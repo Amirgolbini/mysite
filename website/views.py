@@ -10,5 +10,4 @@ def about_view(request):
 def contact_view(request):
     return render(request, 'website/contact.html')
 
-def test_view(request):
-    return render(request, 'website/test.html')
+
