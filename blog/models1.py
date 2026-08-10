@@ -1,0 +1,29 @@
+from django.db import migrations, models
+import django.db.models.deletion
+
+
+class Migration(migrations.Migration):
+
+    dependencies = [
+        ('blog', '0003_post_bathrooms_post_bedrooms_post_capacity_base_and_more'),
+    ]
+
+    operations = [
+        migrations.CreateModel(
+            name='Reservation',
+            fields=[
+                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
+                ('full_name', models.CharField(max_length=150, verbose_name='نام و نام خانوادگی')),
+                ('phone_number', models.CharField(max_length=15, verbose_name='شماره تلفن')),
+                ('check_in', models.DateField(verbose_name='تاریخ ورود')),
+                ('check_out', models.DateField(verbose_name='تاریخ خروج')),
+                ('total_price', models.PositiveIntegerField(default=0, verbose_name='قیمت کل (تومان)')),
+                ('created_at', models.DateTimeField(auto_now_add=True, verbose_name='تاریخ ثبت')),
+                ('post', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='reservations', to='blog.post', verbose_name='اقامتگاه')),
+            ],
+            options={
+                'verbose_name': 'رزرو',
+                'verbose_name_plural': 'رزروها',
+            },
+        ),
+    ]
